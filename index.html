@@ -71,7 +71,48 @@
     <p id="result">Your predicted price will appear here.</p>
 
 </div>
+<hr>
 
+<h2>🌾 Crop Price Information</h2>
+
+<input type="text" id="searchCrop" placeholder="Search crop..." onkeyup="searchCrop()">
+
+<table border="1" width="100%" id="cropTable">
+<tr>
+<th>Crop</th>
+<th>Market</th>
+<th>Price</th>
+<th>Updated</th>
+</tr>
+
+<tr>
+<td>Rice</td>
+<td>Tumakuru</td>
+<td>₹3200 / Quintal</td>
+<td>05-10-2026</td>
+</tr>
+
+<tr>
+<td>Ragi</td>
+<td>Tumakuru</td>
+<td>₹4100 / Quintal</td>
+<td>05-10-2026</td>
+</tr>
+
+<tr>
+<td>Maize</td>
+<td>Tumakuru</td>
+<td>₹2400 / Quintal</td>
+<td>05-10-2026</td>
+</tr>
+
+<tr>
+<td>Tomato</td>
+<td>Tumakuru</td>
+<td>₹2800 / Quintal</td>
+<td>05-10-2026</td>
+</tr>
+</table>
 <script>
 
 function predictPrice() {
@@ -93,7 +134,19 @@ function predictPrice() {
     "Estimated Price: ₹" + price;
 
 }
+function searchCrop() {
+    let input = document.getElementById("searchCrop").value.toLowerCase();
+    let rows = document.getElementById("cropTable").getElementsByTagName("tr");
 
+    for (let i = 1; i < rows.length; i++) {
+        let crop = rows[i].getElementsByTagName("td")[0];
+
+        if (crop) {
+            rows[i].style.display =
+                crop.textContent.toLowerCase().includes(input) ? "" : "none";
+        }
+    }
+}
 </script>
 
 </body>
