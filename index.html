@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Price Information System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f8f0;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        select, input, button {
+            padding: 10px;
+            margin: 8px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Crop Price Information System</h1>
+
+    <p>Welcome to the Crop Price Information System</p>
+
+    <h2>User Module</h2>
+
+    <label>Select Crop:</label>
+
+    <select id="crop">
+        <option>Rice</option>
+        <option>Wheat</option>
+        <option>Maize</option>
+        <option>Cotton</option>
+    </select>
+
+    <br>
+
+    <label>Quantity:</label>
+
+    <input type="number" id="quantity" placeholder="Enter quantity">
+
+    <br>
+
+    <button onclick="predictPrice()">Predict Price</button>
+
+    <h2>Result</h2>
+
+    <p id="result">Your predicted price will appear here.</p>
+
+</div>
+
+<script>
+
+function predictPrice() {
+
+    let crop = document.getElementById("crop").value;
+    let quantity = document.getElementById("quantity").value;
+
+    if (quantity == "") {
+        document.getElementById("result").innerHTML =
+        "Please enter quantity.";
+        return;
+    }
+
+    let price = quantity * 25;
+
+    document.getElementById("result").innerHTML =
+    "Crop: " + crop + "<br>" +
+    "Quantity: " + quantity + "<br>" +
+    "Estimated Price: ₹" + price;
+
+}
+
+</script>
+
+</body>
+</html>
