@@ -147,7 +147,91 @@ function searchCrop() {
         }
     }
 }
-</script>
+    function adminLogin() {
+    const username = document.getElementById("adminUsername").value;
+    const password = document.getElementById("adminPassword").value;
 
+    if (username === "admin" && password === "admin123") {
+        document.getElementById("adminLogin").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+        alert("Admin Login Successful!");
+    } else {
+        alert("Invalid username or password!");
+    }
+}
+
+function adminLogout() {
+    document.getElementById("adminLogin").style.display = "block";
+    document.getElementById("adminPanel").style.display = "none";
+}
+
+function addCrop() {
+    const crop = document.getElementById("newCrop").value;
+    const market = document.getElementById("newMarket").value;
+    const price = document.getElementById("newPrice").value;
+
+    if (crop === "" || market === "" || price === "") {
+        alert("Please enter all details.");
+        return;
+    }
+
+    const table = document.getElementById("adminTable");
+    const row = table.insertRow(-1);
+
+    row.insertCell(0).innerHTML = crop;
+    row.insertCell(1).innerHTML = market;
+    row.insertCell(2).innerHTML = "₹" + price + " / Quintal";
+    row.insertCell(3).innerHTML =
+        '<button onclick="this.parentElement.parentElement.remove()">🗑️ Delete</button>';
+
+    document.getElementById("newCrop").value = "";
+    document.getElementById("newMarket").value = "";
+    document.getElementById("newPrice").value = "";
+
+    alert("Crop added successfully!");
+}
+</script>
+<hr>
+
+<h2>🔐 Admin Module</h2>
+
+<div id="adminLogin">
+    <input type="text" id="adminUsername" placeholder="Admin Username">
+    <br>
+    <input type="password" id="adminPassword" placeholder="Admin Password">
+    <br>
+    <button onclick="adminLogin()">Login</button>
+</div>
+
+<div id="adminPanel" style="display:none;">
+
+    <h3>📊 Admin Dashboard</h3>
+
+    <input type="text" id="newCrop" placeholder="Crop Name">
+    <br>
+
+    <input type="text" id="newMarket" placeholder="Market">
+    <br>
+
+    <input type="number" id="newPrice" placeholder="Price per Quintal">
+    <br>
+
+    <button onclick="addCrop()">➕ Add Crop</button>
+
+    <h3>Crop Management</h3>
+
+    <table border="1" width="100%" id="adminTable">
+        <tr>
+            <th>Crop</th>
+            <th>Market</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </table>
+
+    <br>
+    <button onclick="adminLogout()">🚪 Logout</button>
+
+</div>
 </body>
 </html>
