@@ -266,6 +266,38 @@ function addCrop() {
         alert("Crop updated successfully!");
     }
    } 
+    function comparePrices() {
+    const price1 = document.getElementById("crop1").value;
+    const price2 = document.getElementById("crop2").value;
+
+    if (price1 === "" || price2 === "") {
+        alert("Please select both crops.");
+        return;
+    }
+
+    const name1 =
+        document.getElementById("crop1").options[
+            document.getElementById("crop1").selectedIndex
+        ].text;
+
+    const name2 =
+        document.getElementById("crop2").options[
+            document.getElementById("crop2").selectedIndex
+        ].text;
+
+    let result = "";
+
+    if (Number(price1) > Number(price2)) {
+        result = name1 + " has a higher price than " + name2 + ".";
+    } else if (Number(price2) > Number(price1)) {
+        result = name2 + " has a higher price than " + name1 + ".";
+    } else {
+        result = "Both crops have the same price.";
+    }
+
+    document.getElementById("comparisonResult").innerHTML =
+        "<h3>📊 Comparison Result</h3><p>" + result + "</p>";
+    }
 </script>
 <hr>
 
@@ -360,5 +392,32 @@ function addCrop() {
     <p>🌾 Crop Price Information System</p>
     <p>BCA Mini Project | 2026</p>
 </footer>
+    <hr>
+
+<h2>📈 Price Comparison Module</h2>
+
+<p>Select two crops to compare their prices.</p>
+
+<select id="crop1">
+    <option value="">Select Crop 1</option>
+    <option value="3200">Rice</option>
+    <option value="4100">Ragi</option>
+    <option value="2400">Maize</option>
+    <option value="2800">Tomato</option>
+</select>
+
+<select id="crop2">
+    <option value="">Select Crop 2</option>
+    <option value="3200">Rice</option>
+    <option value="4100">Ragi</option>
+    <option value="2400">Maize</option>
+    <option value="2800">Tomato</option>
+</select>
+
+<br>
+
+<button onclick="comparePrices()">📊 Compare Prices</button>
+
+<div id="comparisonResult"></div>
 </body>
 </html>
