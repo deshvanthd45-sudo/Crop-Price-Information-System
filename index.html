@@ -298,6 +298,14 @@ function addCrop() {
     document.getElementById("comparisonResult").innerHTML =
         "<h3>📊 Comparison Result</h3><p>" + result + "</p>";
     }
+    function showResult(crop, quantity, price) {
+    document.getElementById("resultCrop").innerText = crop;
+    document.getElementById("resultQuantity").innerText = quantity;
+    document.getElementById("resultPrice").innerText = price;
+    
+    const total = Number(quantity) * Number(price);
+    document.getElementById("resultTotal").innerText = total;
+    }
 </script>
 <hr>
 
@@ -419,5 +427,20 @@ function addCrop() {
 <button onclick="comparePrices()">📊 Compare Prices</button>
 
 <div id="comparisonResult"></div>
+    <hr>
+
+<h2>📱 Result Module</h2>
+
+<div id="resultBox">
+
+    <p><b>Crop:</b> <span id="resultCrop">-</span></p>
+
+    <p><b>Quantity:</b> <span id="resultQuantity">-</span> kg</p>
+
+    <p><b>Predicted Price:</b> ₹<span id="resultPrice">-</span></p>
+
+    <p><b>Estimated Total Value:</b> ₹<span id="resultTotal">-</span></p>
+
+</div>
 </body>
 </html>
