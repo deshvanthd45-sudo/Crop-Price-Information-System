@@ -182,14 +182,29 @@ function addCrop() {
     row.insertCell(1).innerHTML = market;
     row.insertCell(2).innerHTML = "₹" + price + " / Quintal";
     row.insertCell(3).innerHTML =
-        '<button onclick="this.parentElement.parentElement.remove()">🗑️ Delete</button>';
-
+    '<button onclick="editCrop(this)">✏️ Edit</button> ' +
+    '<button onclick="this.parentElement.parentElement.remove()">🗑️ Delete</button>';
     document.getElementById("newCrop").value = "";
     document.getElementById("newMarket").value = "";
     document.getElementById("newPrice").value = "";
 
     alert("Crop added successfully!");
 }
+   function editCrop(button) {
+    const row = button.parentElement.parentElement;
+
+    const crop = prompt("Enter new crop name:", row.cells[0].innerText);
+    const market = prompt("Enter new market:", row.cells[1].innerText);
+    const price = prompt("Enter new price:", row.cells[2].innerText.replace("₹", "").replace(" / Quintal", ""));
+
+    if (crop && market && price) {
+        row.cells[0].innerText = crop;
+        row.cells[1].innerText = market;
+        row.cells[2].innerText = "₹" + price + " / Quintal";
+
+        alert("Crop updated successfully!");
+    }
+   } 
 </script>
 <hr>
 
